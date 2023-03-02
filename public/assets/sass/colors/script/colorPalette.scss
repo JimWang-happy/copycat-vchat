@@ -1,0 +1,85 @@
+@import './tinycolor.scss';
+
+$hueStep: 2;
+$saturationStep: 16;
+$saturationStep2: 5;
+$brightnessStep1: 5;
+$brightnessStep2: 15;
+$lightColorCount: 5;
+$darkColorCount: 4;
+
+@function gethue($h, $s, $v, $i, $isLight) {
+  $hue: null;
+  @if ($h >= 60 and $h <= 240) {
+    @if ($isLight == true) {
+      $hue: $h - $hueStep * $i;
+    }
+    @else {
+      $hue: $h + $hueStep * $i;
+    }
+  }
+  @else {
+    @if ($isLight == true) {
+      $hue: $h + $hueStep * $i;
+    }
+    @else {
+      $hue: $h - $hueStep * $i;
+    }
+  }
+  @if ($hue < 0) {
+    $hue: $hue + 360;
+  }
+  @else if ($hue >= 360) {
+    $hue: $hue - 360;
+  }
+  @return $hue;
+}
+
+@function getsaturation($h, $s, $v, $i, $isLight) {
+  $saturation: 0;
+  @if ($isLight) {
+    $saturation: $s - $saturationStep * $i;
+  }
+  @else if ($i == $darkColorCount) {
+    $saturation: $s + $saturationStep;
+  }
+  @else {
+    $saturation: $s + $saturationStep2 * $i;
+  }
+  @if ($saturation > 100) {
+    $saturation: 100;
+  }
+  @if ($isLight and $i == $lightColorCount and $saturation > 10) {
+    $saturation: 10;
+  }
+  @if ($saturation < 6) {
+    $saturation: 6;
+  }
+  @return round($saturation);
+}
+
+@function getvalue($h, $s, $v, $i, $isLight) {
+  @if ($isLight) {
+    @return $v + $brightnessStep1 * $i;
+  }
+  @return $v - $brightnessStep2 * $i;
+}
+
+@function colorpalette($color, $index) {
+  $isLight: $index <= 6;
+  $i: 0;
+  $hsv: ch-color-to-hsv($color);
+  $h: nth($hsv, 1);
+  $s: nth($hsv, 2);
+  $v: nth($hsv, 3);
+  @if ($index <= 6) {
+    $i: $lightColorCount + 1 - $index;
+  }
+  @else {
+    $i: $index - $lightColorCount - 1;
+  }
+  $adjustHue: round(gethue($h, $s, $v, $i, $isLight));
+  $adjustSaturation: getsaturation($h, $s, $v, $i, $isLight);
+  $adjustLight: getvalue($h, $s, $v, $i, $isLight);
+  @return ch-hsv-to-color($adjustHue, $adjustSaturation, $adjustLight);
+}

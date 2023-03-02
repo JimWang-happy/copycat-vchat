@@ -1,0 +1,56 @@
+.wrap {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+
+  .header {
+    display: flex;
+    height: 56px;
+    padding: 0 $padding-l;
+    align-items: center;
+    border-bottom: 1px solid $border-color;
+
+    .logo {
+      img {
+        display: block;
+        height: 32px;
+      }
+    }
+  }
+
+  .container {
+    flex: 1;
+    padding-top: $padding-xxl*2;
+    overflow-y: auto;
+  }
+}
+
+.status {
+  text-align: center;
+
+  .icon {
+    margin: 0 auto $padding-m auto;
+    font-size: 70px;
+    color: $success-color;
+  }
+
+  .tit {
+    font-size: $font-size-heading;
+    color: $color-text-title;
+    font-weight: bold;
+
+    & + .cont {
+      margin-top: $padding-xs;
+    }
+  }
+
+  .cont {
+    font-size: $font-size-base;
+    color: $color-text-secondary;
+  }
+
+  :global(.ant-modal-confirm-btns) {
+    float: none;
+    text-align: center;
+  }
+}

@@ -1,0 +1,27 @@
+.dl {
+  .dt {
+    font-size: $font-size-heading;
+    color: $color-text-title;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: $padding-l * 2;
+  }
+
+  .dd {
+    margin: 0 auto;
+    width: 500px;
+
+    :global(.ant-row.ant-form-item) {
+      margin-bottom: $padding-l;
+
+      :global(.ant-form-item-extra) {
+        margin-top: $padding-s;
+      }
+    }
+  }
+
+  .ft {
+    margin-top: $padding-m;
+    text-align: center;
+  }
+}

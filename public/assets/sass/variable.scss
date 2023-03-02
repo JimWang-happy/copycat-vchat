@@ -1,0 +1,116 @@
+@import './colors/colors.scss';
+
+$primary-color: $royalbule-6;
+$success-color: $green-6;
+$danger-color: $red-5;
+$warning-color: $gold-6;
+$info-color: #78a;
+
+$primary-1: colorpalette($primary-color, 1);
+$primary-2: colorpalette($primary-color, 2);
+$primary-3: colorpalette($primary-color, 3);
+$primary-4: colorpalette($primary-color, 4);
+$primary-5: colorpalette($primary-color, 5);
+$primary-6: $primary-color;
+$primary-7: colorpalette($primary-color, 7);
+$primary-8: colorpalette($primary-color, 8);
+$primary-9: colorpalette($primary-color, 9);
+$primary-10: colorpalette($primary-color, 10);
+
+// 背景
+$bg-default: #fff;
+$bg-gray: $blueGray-1;
+$bg-container: #f5f7f9;
+$bg-disabled: $blueGray-2;
+$bg-hover: $primary-1;
+$box-shadow: 0 2px 8px 0 $blueGray-3;
+$box-hover-shadow: 0 12px 12px 0 $blueGray-3;
+
+// 间距
+$padding: 4px;
+$padding-xs: $padding;  // 4px
+$padding-s: $padding*2; // 8px
+$padding-m: $padding*3; // 12px
+$padding-l: $padding*4; // 16px
+$padding-xl: $padding*5; // 20px
+$padding-xxl: $padding*6; // 24px
+
+// 文字大小
+$font-size-sm: 12px;
+$font-size-base: 14px;
+$font-size-md: 16px;
+$font-size-lg: 18px;
+$font-size-xl: 20px;
+$font-size-heading: 24px;
+$font-size-strong: 32px;
+$font-weight: 500px;
+
+// 文字颜色
+$color-text-title: $blueGray-9; // 标题
+$color-text-base: $blueGray-8; // 基本
+$color-text-secondary: $blueGray-6; // 描述
+$color-text-base-inverse: #fff;    // 基本 - 反色
+$color-text-strong: $danger-color;       //价格、强调的数值，包含单位
+$color-link: $primary-color;             // 链接
+
+// 线条
+$border-color: $blueGray-4;
+$dividing-color: $blueGray-3;
+
+// 圆角
+$border-radius-base: 2px;
+$border-radius-sm: 2px;
+
+// 自定变量
+$page-header-height: 52px;
+$modal-padding: $padding * 5 $padding * 9;
+
+@mixin page-container-width {
+  padding: $padding-l $padding-xxl;
+  min-width: 1200px;
+  width: 96%;
+  margin: 0 auto;
+}
+
+// 清除浮动
+@mixin clearfix {
+  &::before,
+  &::after {
+    content: " ";
+    display: table;
+  }
+
+  &::after {
+    clear: both;
+  }
+}
+
+@mixin textEllipsis {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+@mixin setWidth {
+  margin: 0 auto;
+  width: 100%;
+  max-width: 1200px;
+}
+
+@mixin flexModal {
+  top: 40px;
+  padding-bottom: $padding-l;
+
+  :global(.ant-modal-content) {
+    min-height: 320px;
+    max-height: calc(100vh - 80px);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  :global(.ant-modal-body) {
+    flex: 1;
+    overflow-y: auto;
+  }
+}
